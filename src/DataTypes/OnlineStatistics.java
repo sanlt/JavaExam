@@ -1,13 +1,21 @@
 package DataTypes;
 
 public class OnlineStatistics {
-    int sum;
-    double average;
-    int max = Integer.MAX_VALUE;
-    int min = Integer.MIN_VALUE;
-    int values;
+    private int sum;
+    private double average;
+    private int max = Integer.MIN_VALUE;
+    private int min = Integer.MAX_VALUE;
+    private int numberOfValues;
+
+    public void addValue(int value) {
+        numberOfValues++;
+        sum += value;
+        max = Math.max(max, value);
+        min = Math.min(min, value);
+    }
 
     public double getAverage() {
+        average = ((double) sum) / numberOfValues;
         return average;
     }
 
@@ -23,8 +31,14 @@ public class OnlineStatistics {
         return sum;
     }
 
-    public void addValue(int value) {
 
+
+    public void reset() {
+        sum = 0;
+        numberOfValues = 0;
+        max = Integer.MAX_VALUE;
+        min = Integer.MIN_VALUE;
+        average = 0;
     }
 
 
